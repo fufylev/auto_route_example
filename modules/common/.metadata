@@ -1,0 +1,5 @@
+version:
+  revision: "9e1c857886f07d342cf106f2cd588bcd5e031bb2"
+  channel: "stable"
+
+project_type: plugin

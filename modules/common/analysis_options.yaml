@@ -1,0 +1,77 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    prefer_single_quotes: true
+    avoid_relative_lib_imports: true
+    always_use_package_imports: true
+    prefer_void_to_null: true
+    always_declare_return_types: true
+    avoid_empty_else: true
+    avoid_unused_constructor_parameters: true
+    cancel_subscriptions: true
+    avoid_escaping_inner_quotes: true
+    avoid_field_initializers_in_const_classes: true
+    avoid_final_parameters: true
+    avoid_multiple_declarations_per_line: true
+    avoid_redundant_argument_values: true
+    avoid_type_to_string: true
+    avoid_void_async: true
+    constant_identifier_names: false
+    directives_ordering: true
+    eol_at_end_of_file: true
+    invalid_case_patterns: true
+    literal_only_boolean_expressions: true
+    no_runtimeType_toString: true
+    noop_primitive_operations: true
+    only_throw_errors: true
+    parameter_assignments: true
+    prefer_asserts_in_initializer_lists: true
+    prefer_constructors_over_static_methods: true
+    prefer_final_in_for_each: true
+    prefer_final_locals: true
+    prefer_if_elements_to_conditional_expressions: true
+    prefer_int_literals: true
+    prefer_null_aware_method_calls: true
+    sized_box_shrink_expand: true
+    tighten_type_of_initializing_formals: true
+    unawaited_futures: true
+    unnecessary_await_in_return: true
+    unnecessary_breaks: true
+    unnecessary_lambdas: true
+    unnecessary_null_checks: true
+    unnecessary_parenthesis: true
+    unnecessary_statements: true
+    use_colored_box: true
+    use_enums: true
+    use_is_even_rather_than_modulo: true
+    use_late_for_private_fields_and_variables: true
+    use_named_constants: true
+    use_setters_to_change_properties: true
+    use_string_buffers: true
+    use_to_and_as_if_applicable: true
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.gr.dart"
+    - "**/*.localizations.dart"
+  errors:
+    invalid_annotation_target: ignore
+
+dart_code_metrics:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.gr.dart"
+    - "**/*.localizations.dart"
+    - "**/*.doc_widget.dart"
+  extends:
+    - package:dart_code_metrics_presets/all.yaml
+    - recommended
+  rules:
+    - newline-before-return
+    - prefer-match-file-name: false
+    - avoid-late-keyword: false
+    - member-ordering: false
+    - avoid-returning-widgets: false
+    - avoid-dynamic: false
+    - prefer-dedicated-media-query-methods

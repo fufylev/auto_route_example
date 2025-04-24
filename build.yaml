@@ -1,0 +1,18 @@
+targets:
+  $default:
+    builders:
+      auto_route_generator:
+        options:
+          enable_cached_builds: true
+        generate_for:
+          - lib/**.dart
+          - modules/**.dart
+    sources:
+      include:
+        - "modules/*/lib/**"
+        - "modules/*/test/**"
+        - "lib/**"
+        - "test/**"
+      exclude:
+        - '**/*.localizations.dart'
+        - 'modules/**/*.localizations.dart'
