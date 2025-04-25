@@ -49,7 +49,7 @@ class _MainScreenState extends State<MainScreen> {
         child: AutoTabsScaffold(
           animationDuration: Duration.zero,
           extendBody: true,
-          routes: navigator.tabNavigationRoutes,
+          routes: tabNavigator.tabNavigationRoutes,
           inheritNavigatorObservers: true,
           bottomNavigationBuilder: (_, tabsRouter) {
             List<BottomNavigationIndex> indexes = List.of(BottomNavigationIndex.values);
