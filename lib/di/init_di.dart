@@ -21,7 +21,7 @@ Future<void> initDI() async {
     final instance = GetIt.instance;
     instance.pushNewScope(scopeName: applicationScope);
     final _rootRouter = AppRouter();
-    final observer = NavigationObserver();
+    final _observer = NavigationObserver();
 
     /// Этим роутером будем пользоваться в рутовой папке
     instance.registerSingleton<AppRouter>(_rootRouter);
@@ -33,7 +33,7 @@ Future<void> initDI() async {
     instance.registerSingleton<TabNavigator>(TabNavigator(instance.get()));
 
     /// Позволяет подписаться на эвенты навигации
-    instance.registerSingleton<NavigationObserver>(observer);
+    instance.registerSingleton<NavigationObserver>(_observer);
 
     instance.registerSingleton<AuthExternalNavigator>(AuthExternalNavigatorImpl(appRouter: instance.get()));
     instance.registerSingleton<HomeExternalNavigator>(HomeExternalNavigatorImpl(
