@@ -22,8 +22,8 @@ class TabWidget extends StatelessWidget {
 
   String _getTabName(BottomNavigationIndex currentIndex) {
     return switch (currentIndex) {
-      BottomNavigationIndex.home => 'Home',
-      BottomNavigationIndex.more => 'More',
+      BottomNavigationIndex.home => 'Home', // TODO - локализация
+      BottomNavigationIndex.more => 'More', // TODO - локализация
     };
   }
 

@@ -15,7 +15,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  late TabNavigator navigator;
+  late TabNavigator tabNavigator;
 
   void _showCloseAppBottomSheet() {
     showModalBottomSheet(
@@ -26,7 +26,7 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   void _onPopInvoked(_, __) {
-    final hasNavigated = navigator.tabPop();
+    final hasNavigated = tabNavigator.tabPop();
     if (!hasNavigated) {
       _showCloseAppBottomSheet();
     }
@@ -36,7 +36,7 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     super.initState();
 
-    navigator = getIt();
+    tabNavigator = getIt();
   }
 
   @override
@@ -64,7 +64,7 @@ class _MainScreenState extends State<MainScreen> {
               activeIndex: BottomNavigationIndex.values[tabsRouter.activeIndex],
               onTap: (index) {
                 tabsRouter.setActiveIndex(index.index);
-                navigator.onTabPressed(index);
+                tabNavigator.onTabPressed(index);
               },
               indexes: indexes,
             );

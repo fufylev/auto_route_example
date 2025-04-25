@@ -25,32 +25,44 @@ class MoreMainPage extends StatelessWidget {
         title: Text('More Screen'),
         leading: AutoLeadingButton(),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          TextButton(
-            child: const Text('Go to internal screen'),
-            onPressed: () => context.read<MoreCubit>().navigateToInternalScreen(),
-          ),
-          TextButton(
-            child: const Text('Go to Account Details screen'),
-            onPressed: () => context.read<MoreCubit>().navigateToAccountDetailsScreen(),
-          ),
-          TextButton(
-            child: const Text('Jump to Home screen'),
-            onPressed: () => context.read<MoreCubit>().jumpToHomeScreen(),
-          ),
-          TextButton(
-            child: const Text('Jump to Home screen with internal screen'),
-            onPressed: () => context.read<MoreCubit>().jumpToHomeScreenAndInternalScreen(),
-          ),
-          TextButton(
-            child: const Text('Jump to Home screen with Account details screen'),
-            onPressed: () {
-              context.read<MoreCubit>().jumpToHomeScreenAndAccountDetails();
-            },
-          ),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text('Произойдет навигация на внутренний экран Intenal без накрытия ботом наивгции'),
+            FilledButton(
+              child: const Text('Go to Internal screen'),
+              onPressed: () => context.read<MoreCubit>().navigateToInternalScreen(),
+            ),
+            SizedBox(height: 20),
+            const Text('Произойдет навигация на внешний экран AccountDetails c перекрытием ботом навигации'),
+            FilledButton(
+              child: const Text('Go to Account Details screen'),
+              onPressed: () => context.read<MoreCubit>().navigateToAccountDetailsScreen(),
+            ),
+            SizedBox(height: 20),
+            const Text('Произойдет прыжок на таб Home'),
+            FilledButton(
+              child: const Text('Jump to Home tab'),
+              onPressed: () => context.read<MoreCubit>().jumpToHomeScreen(),
+            ),
+            SizedBox(height: 20),
+            const Text(
+                'Произойдет прыжок на таб Home c открытием внутреннего экрана Intenal без накрытия ботом наивгции'),
+            FilledButton(
+              child: const Text('Jump to Home tab => Internal screen'),
+              onPressed: () => context.read<MoreCubit>().jumpToHomeScreenAndInternalScreen(),
+            ),
+            SizedBox(height: 20),
+            const Text(
+                'Произойдет прыжок на таб Home c открытием внешнего экрана AccountDetails c перекрытием ботом навигации'),
+            FilledButton(
+              child: const Text('Jump to Home tab => Account details screen'),
+              onPressed: () => context.read<MoreCubit>().jumpToHomeScreenAndAccountDetails(),
+            ),
+          ],
+        ),
       ),
     );
   }

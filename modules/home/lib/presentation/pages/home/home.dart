@@ -43,26 +43,37 @@ class _HomeMainPageState extends StateWithCubit<HomeCubit, HomeMainPage> {
         title: const Text('Home Screen'),
         leading: const AutoLeadingButton(),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          TextButton(
-            child: const Text('Go to internal screen'),
-            onPressed: () => context.read<HomeCubit>().navigateToInternalScreen(),
-          ),
-          TextButton(
-            child: const Text('Go to Account Details screen'),
-            onPressed: () => context.read<HomeCubit>().navigateToAccountDetailsScreen(),
-          ),
-          TextButton(
-            child: const Text('Jump to More screen'),
-            onPressed: () => context.read<HomeCubit>().jumpToMoreScreen(),
-          ),
-          TextButton(
-            child: const Text('Jump to More screen with internal screen'),
-            onPressed: () => context.read<HomeCubit>().jumpToMoreScreenAndInternalScreen(),
-          ),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text('Произойдет навигация на внутренний экран Intenal без накрытия ботом наивгции'),
+            FilledButton(
+              child: const Text('Go to Internal screen'),
+              onPressed: () => context.read<HomeCubit>().navigateToInternalScreen(),
+            ),
+            const SizedBox(height: 20),
+            const Text('Произойдет навигация на внешний экран AccountDetails c перекрытием ботом навигации'),
+            FilledButton(
+              child: const Text('Go to Account Details screen'),
+              onPressed: () => context.read<HomeCubit>().navigateToAccountDetailsScreen(),
+            ),
+            const SizedBox(height: 20),
+            const Text('Произойдет прыжок на таб More'),
+            FilledButton(
+              child: const Text('Jump to More tab'),
+              onPressed: () => context.read<HomeCubit>().jumpToMoreScreen(),
+            ),
+            const SizedBox(height: 20),
+            const Text(
+                'Произойдет прыжок на таб More c открытием внутреннего экрана Intenal без накрытия ботом наивгции'),
+            FilledButton(
+              child: const Text('Jump to More tab => Internal screen'),
+              onPressed: () => context.read<HomeCubit>().jumpToMoreScreenAndInternalScreen(),
+            ),
+          ],
+        ),
       ),
     );
   }
