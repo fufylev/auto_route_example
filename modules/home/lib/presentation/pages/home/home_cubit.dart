@@ -6,13 +6,13 @@ class HomeCubit extends BaseCubit<HomeState> {
 
   HomeCubit(this.navigator) : super(HomeState()) {
     navigator.listenDidPop(() {
-      addNews(ShowEventOnListener());
+      addNews(ShowEventOnListener()); // вот тут мы получим колбек на didPop который реализовали в навигаторе
     });
   }
 
   @override
   Future<void> close() {
-    navigator.unregisterListener();
+    navigator.unregisterListener(); // ну и не забываем удалять обзервер из стека если экран утилизирован
     return super.close();
   }
 

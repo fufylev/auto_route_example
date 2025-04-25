@@ -49,12 +49,13 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    final AppRouter router = widget.appRouter;
-    final NavigationObserver observer = widget.observer;
+    final AppRouter router = widget.appRouter; // Получаем от родителя
+    final NavigationObserver observer = widget.observer; // Получаем от родителя
+
     return MaterialApp.router(
       routerConfig: router.config(
         navigatorObservers: () => [
-          AutoRouteNavigationObserver(observer),
+          AutoRouteNavigationObserver(observer), // Обзервер навигации
         ],
       ),
       theme: ThemeData.light(),

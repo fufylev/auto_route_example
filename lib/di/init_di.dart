@@ -14,12 +14,9 @@ import 'package:more/di/more_di_module.dart';
 import 'package:more/navigation/navigator.dart';
 import 'package:navigation_observer/navigation_observer.dart';
 
-const applicationScope = "applicationScope";
-
 Future<void> initDI() async {
   try {
     final instance = GetIt.instance;
-    instance.pushNewScope(scopeName: applicationScope);
     final _rootRouter = AppRouter();
     final _observer = NavigationObserver();
 

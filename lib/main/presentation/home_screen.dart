@@ -52,6 +52,8 @@ class _MainScreenState extends State<MainScreen> {
           routes: tabNavigator.tabNavigationRoutes,
           inheritNavigatorObservers: true,
           bottomNavigationBuilder: (_, tabsRouter) {
+            // Объект enum позволяет записать его через вот такой синтаксис.
+            // Это позволяет работать с ним как с Iterable
             List<BottomNavigationIndex> indexes = List.of(BottomNavigationIndex.values);
 
             //! Вот так можно динамически удалить/добавить таб из представления
@@ -63,8 +65,8 @@ class _MainScreenState extends State<MainScreen> {
             return AppNavigationBar(
               activeIndex: BottomNavigationIndex.values[tabsRouter.activeIndex],
               onTap: (index) {
-                tabsRouter.setActiveIndex(index.index);
-                tabNavigator.onTabPressed(index);
+                tabsRouter.setActiveIndex(index.index); // нативное поведение
+                tabNavigator.onTabPressed(index); // в наш таб навигатор созраняем индекс для дальнейшего использования
               },
               indexes: indexes,
             );

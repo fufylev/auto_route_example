@@ -30,12 +30,18 @@ class HomeRouter {
 }
 
 abstract class HomeExternalNavigator {
+  /// Произойдет навигация на внешний экран AccountDetails c перекрытием ботом навигации
   void navigateToAccountDetailsScreen() {}
+
+  /// Произойдет прыжок на таб More
   void jumpToMoreScreen() {}
+
+  /// Произойдет прыжок на таб More c открытием внутреннего экрана Intenal без накрытия ботом навигации
   void jumpToMoreScreenAndInternalScreen() {}
 }
 
 abstract interface class HomeInternalNavigator {
+  /// Произойдет навигация на внутренний экран Intenal без накрытия ботом навигации
   void navigateToInternalScreen() {}
 }
 
@@ -62,6 +68,7 @@ abstract interface class HomeNavigator {
   void unregisterListener();
 }
 
+/// Наследуемся от AtbRouteObserver чтобы иметь возможность использовать [RouteSelector]
 class HomeNavigatorImpl extends AtbRouteObserver implements HomeNavigator {
   final HomeExternalNavigator externalNavigator;
   final HomeInternalNavigator internalNavigator;
@@ -73,29 +80,40 @@ class HomeNavigatorImpl extends AtbRouteObserver implements HomeNavigator {
     required this.navigationObserver,
   });
 
+  // Создаём пустой колбек который далее будет использоваться как тригер
   VoidCallback didPopListener = () {};
 
+  /// Переопределяем метод [didPop] где перечисляем на какие селектора мы реагируем
+  /// При этом это может быть имя роута в другом модуле просто через String
+  /// Например "AccountDetailsScreen"
   @override
   void didPop(NavigationRouteData route, NavigationRouteData? previousRoute) {
+    // Если то имя роута совпадает с искомым значение то вызываем колбек
     if (route.name == HomeInternalRoute.name) {
       didPopListener.call();
     }
   }
 
+  /// Переопределяем геттер [selectors] где перечисляем на какие селектора мы реагируем
   @override
   List<RouteSelector> get selectors => [
         RouteNameSelector(HomeInternalRoute.name),
       ];
 
+  /// Реагируем на событие навигации
   @override
   void listenDidPop(VoidCallback listener) {
+    // присваиваем колбек
     didPopListener = listener;
+    // Регистрируем обзервер в нашем классе [NavigationObserver]
     navigationObserver.register(this);
   }
 
   @override
   void unregisterListener() {
+    // Очищаем колбек
     didPopListener = () {};
+    // Удаляем обзервер
     navigationObserver.unregister(this);
   }
 
