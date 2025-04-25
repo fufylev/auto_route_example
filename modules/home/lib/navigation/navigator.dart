@@ -19,12 +19,6 @@ class HomeRouter {
           initial: true,
           path: homeMainRoutePath,
           page: HomeMainRoute.page,
-          children: [
-            AutoRoute(
-              path: homeInternalRoutePath,
-              page: HomeInternalRoute.page,
-            ),
-          ],
         ),
         AutoRoute(
           path: homeInternalRoutePath,
