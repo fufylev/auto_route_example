@@ -3,7 +3,7 @@ import 'package:auth/navigation/navigator.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:example/bottom_nav_bar/navigation/navigator.dart';
 
-@AutoRouterConfig(generateForDir: ['lib'], replaceInRouteName: 'Screen|Page|View,Route')
+@AutoRouterConfig(generateForDir: ['lib'], replaceInRouteName: 'Screen|Page|View|Widget,Route')
 class AppRouter extends RootStackRouter {
   @override
   RouteType get defaultRouteType => RouteType.adaptive();
