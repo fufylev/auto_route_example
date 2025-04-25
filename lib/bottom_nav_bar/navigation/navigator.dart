@@ -42,15 +42,9 @@ class TabNavigator {
   /// Метод нужен для кейсов, когда навигация между табами выполняется не нажатием пользователя
   /// на таб, а другими средствами. Например, переход из Home экрана в экран More
   /// Метод выполняет навигацию и обновляет [_currentIndex] и [_prevIndex].
-  void navigateToIndex(BottomNavigationIndex newIndex) {
+  void navigateToIndex(BottomNavigationIndex newIndex, {List<PageRouteInfo> children = const []}) {
     _updateCurrentIndex(newIndex);
-    final targetRoute = _getRoute(_currentIndex);
-    router.navigate(targetRoute);
-  }
-
-  void navigateToIndexWithNestedScreens(BottomNavigationIndex newIndex, {required List<PageRouteInfo> children}) {
-    _updateCurrentIndex(newIndex);
-    final targetRoute = _getNestedRoute(_currentIndex, children);
+    final targetRoute = children.isNotEmpty ? _getNestedRoute(_currentIndex, children) : _getRoute(_currentIndex);
     router.navigate(targetRoute);
   }
 
