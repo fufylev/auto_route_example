@@ -28,12 +28,14 @@ class MoreExternalNavigatorImpl extends MoreExternalNavigator {
     tabNavigator.navigateToIndex(
       BottomNavigationIndex.home,
       children: [HomeInternalRoute()],
-      isChildrenExternal: false,
     );
   }
 
   @override
   void jumpToHomeScreenAndAccountDetails() {
-    tabNavigator.navigateToIndex(BottomNavigationIndex.home, children: [AccountDetailsMainRoute()]);
+    tabNavigator.navigateToIndex(
+      BottomNavigationIndex.home,
+      children: [AccountDetailsMainRoute(), AccountDetailsMainRoute()],
+    );
   }
 }

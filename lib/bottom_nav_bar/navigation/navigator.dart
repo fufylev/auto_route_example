@@ -46,11 +46,10 @@ class TabNavigator {
   Future<void> navigateToIndex(
     BottomNavigationIndex newIndex, {
     List<PageRouteInfo> children = const [],
-    isChildrenExternal = true,
   }) async {
     _updateCurrentIndex(newIndex);
 
-    if (isChildrenExternal) {
+    if (children.isNotEmpty) {
       final tabsRouter = router.innerRouterOf<TabsRouter>(MainRoute.name);
       if (tabsRouter != null) {
         tabsRouter.setActiveIndex(newIndex.index);
@@ -59,7 +58,7 @@ class TabNavigator {
         }
       }
     } else {
-      final targetRoute = children.isNotEmpty ? _getNestedRoute(_currentIndex, children) : _getRoute(_currentIndex);
+      final targetRoute = _getRoute(_currentIndex);
       await router.navigate(targetRoute);
     }
   }
