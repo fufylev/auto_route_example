@@ -3,6 +3,7 @@ import 'package:common/di/get_it_extensions.dart';
 import 'package:example/bottom_nav_bar/navigation/navigator.dart';
 import 'package:flutter/material.dart';
 
+import 'close_app_bottom_sheet/close_app_bottom_sheet.dart';
 import 'navigation_bar.dart';
 
 @RoutePage()
@@ -17,13 +18,11 @@ class _MainScreenState extends State<MainScreen> {
   late TabNavigator navigator;
 
   void _showCloseAppBottomSheet() {
-    // final colors = context.theme.extension<UiColors>();
-    // showUiModalBottomSheet(
-    //   context: context,
-    //   useRootNavigator: true,
-    //   barrierColor: colors?.backgroundDefault.withOpacity(0.7),
-    //   builder: (_) => const CloseAppBottomSheet(),
-    // );
+    showModalBottomSheet(
+      context: context,
+      useRootNavigator: true,
+      builder: (_) => const CloseAppBottomSheet(),
+    );
   }
 
   void _onPopInvoked(_, __) {
