@@ -35,7 +35,7 @@ class MoreExternalNavigatorImpl extends MoreExternalNavigator {
   void jumpToHomeScreenAndAccountDetails() {
     tabNavigator.navigateToIndex(
       BottomNavigationIndex.home,
-      children: [AccountDetailsMainRoute(), AccountDetailsMainRoute()],
+      children: [AccountDetailsMainRoute()],
     );
   }
 }
