@@ -1,26 +1,33 @@
+import 'dart:ui';
+
 import 'package:auto_route/auto_route.dart';
+import 'package:navigation_observer/navigation_observer.dart';
 
 import 'navigation_module.gr.dart';
 
 class HomeRouter {
+  static const String homeRoutePath = 'home';
+  static const String homeMainRoutePath = 'home_main';
+  static const String homeInternalRoutePath = 'internal';
+
   static List<AutoRoute> routers = [
     AutoRoute(
-      path: 'home',
+      path: homeRoutePath,
       page: HomeRoute.page,
       children: [
         AutoRoute(
           initial: true,
-          path: 'home_main',
+          path: homeMainRoutePath,
           page: HomeMainRoute.page,
           children: [
             AutoRoute(
-              path: 'internal',
+              path: homeInternalRoutePath,
               page: HomeInternalRoute.page,
             ),
           ],
         ),
         AutoRoute(
-          path: 'internal',
+          path: homeInternalRoutePath,
           page: HomeInternalRoute.page,
         ),
       ],
@@ -34,7 +41,7 @@ abstract class HomeExternalNavigator {
   void jumpToMoreScreenAndInternalScreen() {}
 }
 
-abstract class HomeInternalNavigator {
+abstract interface class HomeInternalNavigator {
   void navigateToInternalScreen() {}
 }
 
@@ -51,18 +58,52 @@ class HomeInternalNavigatorImpl implements HomeInternalNavigator {
   }
 }
 
-abstract class HomeNavigator {
+abstract interface class HomeNavigator {
   void navigateToAccountDetailsScreen() {}
   void navigateToInternalScreen() {}
   void jumpToMoreScreen() {}
   void jumpToMoreScreenAndInternalScreen() {}
+
+  void listenDidPop(VoidCallback listener);
+  void unregisterListener();
 }
 
-class HomeNavigatorImpl implements HomeNavigator {
+class HomeNavigatorImpl extends AtbRouteObserver implements HomeNavigator {
   final HomeExternalNavigator externalNavigator;
   final HomeInternalNavigator internalNavigator;
+  final NavigationObserver navigationObserver;
 
-  HomeNavigatorImpl({required this.internalNavigator, required this.externalNavigator});
+  HomeNavigatorImpl({
+    required this.internalNavigator,
+    required this.externalNavigator,
+    required this.navigationObserver,
+  });
+
+  VoidCallback didPopListener = () {};
+
+  @override
+  void didPop(NavigationRouteData route, NavigationRouteData? previousRoute) {
+    if (route.name == HomeInternalRoute.name) {
+      didPopListener.call();
+    }
+  }
+
+  @override
+  List<RouteSelector> get selectors => [
+        RouteNameSelector(HomeInternalRoute.name),
+      ];
+
+  @override
+  void listenDidPop(VoidCallback listener) {
+    didPopListener = listener;
+    navigationObserver.register(this);
+  }
+
+  @override
+  void unregisterListener() {
+    didPopListener = () {};
+    navigationObserver.unregister(this);
+  }
 
   @override
   void navigateToAccountDetailsScreen() {

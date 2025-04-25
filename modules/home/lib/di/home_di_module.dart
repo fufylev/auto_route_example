@@ -1,6 +1,7 @@
 import 'package:common/di/get_it_extensions.dart';
 import 'package:get_it/get_it.dart';
 import 'package:home/navigation/navigator.dart';
+import 'package:navigation_observer/navigation_observer.dart';
 
 class HomeDiModule extends BaseDIModule {
   @override
@@ -11,6 +12,7 @@ class HomeDiModule extends BaseDIModule {
       () => HomeNavigatorImpl(
         externalNavigator: instance.get<HomeExternalNavigator>(),
         internalNavigator: instance.get<HomeInternalNavigator>(),
+        navigationObserver: instance.get<NavigationObserver>(),
       ),
     );
   }

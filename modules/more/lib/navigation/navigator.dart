@@ -3,18 +3,22 @@ import 'package:auto_route/auto_route.dart';
 import 'navigation_module.gr.dart';
 
 class MoreRouter {
+  static const String moreRoutePath = 'more';
+  static const String moreMainRoutePath = 'more_main';
+  static const String moreInternalRoutePath = 'internal';
+
   static List<AutoRoute> routers = [
     AutoRoute(
-      path: 'more',
+      path: moreRoutePath,
       page: MoreRoute.page,
       children: [
         AutoRoute(
           initial: true,
-          path: 'more_main',
+          path: moreMainRoutePath,
           page: MoreMainRoute.page,
         ),
         AutoRoute(
-          path: 'internal',
+          path: moreInternalRoutePath,
           page: MoreInternalRoute.page,
         ),
       ],

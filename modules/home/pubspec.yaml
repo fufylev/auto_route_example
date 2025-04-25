@@ -16,6 +16,8 @@ dependencies:
 
   common:
     path: ../common
+  navigation_observer:
+    path: ../navigation_observer
 dev_dependencies:
   flutter_test:
     sdk: flutter

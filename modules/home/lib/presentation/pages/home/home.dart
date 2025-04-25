@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:common/bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,8 +17,24 @@ class HomeScreen extends StatelessWidget {
 }
 
 /// Стартовый экран для [Home]
-class HomeMainPage extends StatelessWidget {
+class HomeMainPage extends StatefulWidget {
   const HomeMainPage({super.key});
+
+  @override
+  State<HomeMainPage> createState() => _HomeMainPageState();
+}
+
+class _HomeMainPageState extends StateWithCubit<HomeCubit, HomeMainPage> {
+  @override
+  void onNewsReceived(BlocNews news) {
+    if (news is ShowEventOnListener) {
+      const snackBar = SnackBar(content: Text('Мы ушли с экрана Internal'));
+
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
+
+    super.onNewsReceived(news);
+  }
 
   @override
   Widget build(BuildContext context) {

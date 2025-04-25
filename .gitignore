@@ -28,7 +28,7 @@
 .pub-cache/
 .pub/
 /build/
-
+.flutter-plugins-dependencies
 # Android related
 packages/micro/android/**/gradle-wrapper.jar
 packages/micro/android/.gradle

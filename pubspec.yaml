@@ -17,7 +17,8 @@ dependencies:
     path: modules/more
   account_details:
     path: modules/account_details
-
+  navigation_observer:
+    path: modules/navigation_observer
   flutter:
     sdk: flutter
   flutter_localizations:
