@@ -40,12 +40,10 @@ Future<void> initDI() async {
       appRouter: instance.get(),
       tabNavigator: instance.get(),
     ));
-    instance.registerLazySingleton<MoreExternalNavigator>(
-      () => MoreExternalNavigatorImpl(
-        appRouter: instance.get(),
-        tabNavigator: instance.get(),
-      ),
-    );
+    instance.registerSingleton<MoreExternalNavigator>(MoreExternalNavigatorImpl(
+      appRouter: instance.get(),
+      tabNavigator: instance.get(),
+    ));
 
     instance.installModule(AuthDiModule());
     instance.installModule(HomeDiModule());
