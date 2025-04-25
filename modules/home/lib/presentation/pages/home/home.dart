@@ -28,7 +28,7 @@ class _HomeMainPageState extends StateWithCubit<HomeCubit, HomeMainPage> {
   @override
   void onNewsReceived(BlocNews news) {
     if (news is ShowEventOnListener) {
-      const snackBar = SnackBar(content: Text('Мы ушли с экрана Internal'));
+      const snackBar = SnackBar(content: Text('Мы ушли с экрана Internal'), duration: Duration(seconds: 1));
 
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }

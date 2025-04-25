@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:example/router/router.dart';
 import 'package:example/router/router.gr.dart';
 import 'package:home/navigation/navigation_module.gr.dart';
 import 'package:home/navigation/navigator.dart';
@@ -31,7 +32,7 @@ enum BottomNavigationIndex {
 }
 
 class TabNavigator {
-  final StackRouter router;
+  final AppRouter router;
   BottomNavigationIndex? _prevIndex;
   BottomNavigationIndex _currentIndex = BottomNavigationIndex.home;
 
@@ -42,10 +43,25 @@ class TabNavigator {
   /// Метод нужен для кейсов, когда навигация между табами выполняется не нажатием пользователя
   /// на таб, а другими средствами. Например, переход из Home экрана в экран More
   /// Метод выполняет навигацию и обновляет [_currentIndex] и [_prevIndex].
-  void navigateToIndex(BottomNavigationIndex newIndex, {List<PageRouteInfo> children = const []}) {
+  Future<void> navigateToIndex(
+    BottomNavigationIndex newIndex, {
+    List<PageRouteInfo> children = const [],
+    isChildrenExternal = true,
+  }) async {
     _updateCurrentIndex(newIndex);
-    final targetRoute = children.isNotEmpty ? _getNestedRoute(_currentIndex, children) : _getRoute(_currentIndex);
-    router.navigate(targetRoute);
+
+    if (isChildrenExternal) {
+      final tabsRouter = router.innerRouterOf<TabsRouter>(MainRoute.name);
+      if (tabsRouter != null) {
+        tabsRouter.setActiveIndex(newIndex.index);
+        for (var route in children) {
+          router.push(route);
+        }
+      }
+    } else {
+      final targetRoute = children.isNotEmpty ? _getNestedRoute(_currentIndex, children) : _getRoute(_currentIndex);
+      await router.navigate(targetRoute);
+    }
   }
 
   /// Метод обрабатывает нажатия на таб навигации. Обновляет [_currentIndex] и [_prevIndex]

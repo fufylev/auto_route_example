@@ -10,6 +10,7 @@ class MoreCubit extends BaseCubit<MoreState> {
   void navigateToInternalScreen() => navigator.navigateToInternalScreen();
   void jumpToHomeScreen() => navigator.jumpToHomeScreen();
   void jumpToHomeScreenAndInternalScreen() => navigator.jumpToHomeScreenAndInternalScreen();
+  void jumpToHomeScreenAndAccountDetails() => navigator.jumpToHomeScreenAndAccountDetails();
 }
 
 class MoreState {}

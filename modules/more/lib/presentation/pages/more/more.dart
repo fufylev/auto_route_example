@@ -44,6 +44,12 @@ class MoreMainPage extends StatelessWidget {
             child: const Text('Jump to Home screen with internal screen'),
             onPressed: () => context.read<MoreCubit>().jumpToHomeScreenAndInternalScreen(),
           ),
+          TextButton(
+            child: const Text('Jump to Home screen with Account details screen'),
+            onPressed: () {
+              context.read<MoreCubit>().jumpToHomeScreenAndAccountDetails();
+            },
+          ),
         ],
       ),
     );

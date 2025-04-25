@@ -51,7 +51,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     final AppRouter router = widget.appRouter;
     final NavigationObserver observer = widget.observer;
-
     return MaterialApp.router(
       routerConfig: router.config(
         navigatorObservers: () => [

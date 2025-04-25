@@ -30,6 +30,7 @@ abstract class MoreExternalNavigator {
   void navigateToAccountDetailsScreen() {}
   void jumpToHomeScreen() {}
   void jumpToHomeScreenAndInternalScreen() {}
+  void jumpToHomeScreenAndAccountDetails() {}
 }
 
 abstract class MoreInternalNavigator {
@@ -54,6 +55,7 @@ abstract class MoreNavigator {
   void navigateToAccountDetailsScreen() {}
   void jumpToHomeScreen() {}
   void jumpToHomeScreenAndInternalScreen() {}
+  void jumpToHomeScreenAndAccountDetails() {}
 }
 
 class MoreNavigatorImpl implements MoreNavigator {
@@ -80,5 +82,10 @@ class MoreNavigatorImpl implements MoreNavigator {
   @override
   void jumpToHomeScreenAndInternalScreen() {
     externalNavigator.jumpToHomeScreenAndInternalScreen();
+  }
+
+  @override
+  void jumpToHomeScreenAndAccountDetails() {
+    externalNavigator.jumpToHomeScreenAndAccountDetails();
   }
 }
