@@ -42,9 +42,15 @@ class TabNavigator {
   /// Метод нужен для кейсов, когда навигация между табами выполняется не нажатием пользователя
   /// на таб, а другими средствами. Например, переход из Home экрана в экран More
   /// Метод выполняет навигацию и обновляет [_currentIndex] и [_prevIndex].
-  void navigateToIndex(BottomNavigationIndex newIndex, {List<PageRouteInfo>? children}) {
+  void navigateToIndex(BottomNavigationIndex newIndex) {
     _updateCurrentIndex(newIndex);
-    final targetRoute = _getRoute(_currentIndex, children);
+    final targetRoute = _getRoute(_currentIndex);
+    router.navigate(targetRoute);
+  }
+
+  void navigateToIndexWithNestedScreens(BottomNavigationIndex newIndex, {required List<PageRouteInfo> children}) {
+    _updateCurrentIndex(newIndex);
+    final targetRoute = _getNestedRoute(_currentIndex, children);
     router.navigate(targetRoute);
   }
 
@@ -84,10 +90,17 @@ class TabNavigator {
     }
   }
 
-  PageRouteInfo _getRoute(BottomNavigationIndex index, [List<PageRouteInfo>? children]) {
+  PageRouteInfo _getRoute(BottomNavigationIndex index) {
     return switch (index) {
-      BottomNavigationIndex.home => HomeMainRoute(children: children),
-      BottomNavigationIndex.more => MoreMainRoute(children: children),
+      BottomNavigationIndex.home => HomeMainRoute(),
+      BottomNavigationIndex.more => MoreMainRoute(),
+    };
+  }
+
+  PageRouteInfo _getNestedRoute(BottomNavigationIndex index, List<PageRouteInfo> children) {
+    return switch (index) {
+      BottomNavigationIndex.home => HomeRoute(children: [HomeMainRoute(), ...children]),
+      BottomNavigationIndex.more => MoreRoute(children: [MoreMainRoute(), ...children]),
     };
   }
 

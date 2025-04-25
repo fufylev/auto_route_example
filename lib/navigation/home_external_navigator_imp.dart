@@ -25,6 +25,6 @@ class HomeExternalNavigatorImpl extends HomeExternalNavigator {
 
   @override
   void jumpToMoreScreenAndInternalScreen() {
-    tabNavigator.navigateToIndex(BottomNavigationIndex.more, children: [MoreMainRoute(), MoreInternalRoute()]);
+    tabNavigator.navigateToIndexWithNestedScreens(BottomNavigationIndex.more, children: [MoreInternalRoute()]);
   }
 }
