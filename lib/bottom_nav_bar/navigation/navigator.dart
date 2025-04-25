@@ -33,11 +33,11 @@ enum BottomNavigationIndex {
 
 class TabNavigator {
   final AppRouter router;
-  BottomNavigationIndex? _prevIndex;
-  BottomNavigationIndex _currentIndex = BottomNavigationIndex.home;
 
   TabNavigator(this.router);
 
+  BottomNavigationIndex? _prevIndex;
+  BottomNavigationIndex _currentIndex = BottomNavigationIndex.home;
   List<PageRouteInfo> get tabNavigationRoutes => _routes;
 
   /// Метод нужен для кейсов, когда навигация между табами выполняется не нажатием пользователя
@@ -103,13 +103,6 @@ class TabNavigator {
     return switch (index) {
       BottomNavigationIndex.home => HomeMainRoute(),
       BottomNavigationIndex.more => MoreMainRoute(),
-    };
-  }
-
-  PageRouteInfo _getNestedRoute(BottomNavigationIndex index, List<PageRouteInfo> children) {
-    return switch (index) {
-      BottomNavigationIndex.home => HomeRoute(children: [HomeMainRoute(), ...children]),
-      BottomNavigationIndex.more => MoreRoute(children: [MoreMainRoute(), ...children]),
     };
   }
 
