@@ -18,7 +18,10 @@ class LoginView extends StatelessWidget {
         children: [
           TextButton(
             child: const Text('Go to pin code screen'),
-            onPressed: () => context.read<LoginCubit>().navigateToPinCode(),
+            onPressed: () {
+              // context.router.push(route)
+              context.read<LoginCubit>().navigateToPinCode();
+            },
           ),
           // TextButton(
           //   child: const Text('/main'),
