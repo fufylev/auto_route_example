@@ -5,11 +5,6 @@ import 'package:home/navigation/navigator.dart';
 import 'package:more/navigation/navigation_module.gr.dart';
 import 'package:more/navigation/navigator.dart';
 
-enum BottomNavigationIndex {
-  home,
-  more,
-}
-
 class BottomNavBarRouter {
   static const String path = '/main';
 
@@ -29,6 +24,11 @@ const _routes = [
   HomeRoute(),
   MoreRoute(),
 ];
+
+enum BottomNavigationIndex {
+  home,
+  more,
+}
 
 class TabNavigator {
   final StackRouter router;
