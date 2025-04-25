@@ -2,7 +2,7 @@ import 'package:auth/di/auth_di_module.dart';
 import 'package:auth/navigation/navigator.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:common/common.dart';
-import 'package:example/bottom_nav_bar/navigation/navigator.dart';
+import 'package:example/main/navigation/navigator.dart';
 import 'package:example/navigation/auth_external_navigator_imp.dart';
 import 'package:example/navigation/home_external_navigator_imp.dart';
 import 'package:example/navigation/more_external_navigator_imp.dart';

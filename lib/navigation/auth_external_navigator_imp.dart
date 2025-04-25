@@ -9,6 +9,11 @@ class AuthExternalNavigatorImpl extends AuthExternalNavigator {
 
   @override
   void navigateToMainScreen() {
-    appRouter.replaceAll([const MainRoute()]);
+    appRouter.replaceAll([
+      MainRoute(children: [
+        //! Таким образом можно открыть таб навигацию сразу с перезодом в таб More
+        // MoreRoute(),
+      ])
+    ]);
   }
 }

@@ -1,5 +1,5 @@
-import 'package:example/bottom_nav_bar/navigation/navigator.dart';
-import 'package:example/bottom_nav_bar/presentation/tab_widget.dart';
+import 'package:example/main/navigation/navigator.dart';
+import 'package:example/main/presentation/tab_widget.dart';
 import 'package:flutter/material.dart';
 
 class AppNavigationBar extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:common/di/get_it_extensions.dart';
-import 'package:example/bottom_nav_bar/navigation/navigator.dart';
+import 'package:example/main/navigation/navigator.dart';
 import 'package:flutter/material.dart';
 
 import 'close_app_bottom_sheet/close_app_bottom_sheet.dart';

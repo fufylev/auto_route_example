@@ -1,7 +1,7 @@
 import 'package:account_details/navigation/navigator.dart';
 import 'package:auth/navigation/navigator.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:example/bottom_nav_bar/navigation/navigator.dart';
+import 'package:example/main/navigation/navigator.dart';
 
 @AutoRouterConfig(generateForDir: ['lib'], replaceInRouteName: 'Screen|Page|View|Widget,Route')
 class AppRouter extends RootStackRouter {

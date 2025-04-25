@@ -1,5 +1,5 @@
 import 'package:account_details/navigation/navigation_module.gr.dart';
-import 'package:example/bottom_nav_bar/navigation/navigator.dart';
+import 'package:example/main/navigation/navigator.dart';
 import 'package:example/router/router.dart';
 import 'package:home/navigation/navigator.dart';
 import 'package:more/navigation/navigation_module.gr.dart';
@@ -21,6 +21,8 @@ class HomeExternalNavigatorImpl extends HomeExternalNavigator {
   @override
   void jumpToMoreScreen() {
     tabNavigator.navigateToIndex(BottomNavigationIndex.more);
+    //! Тут может возникнуть соблазн сделать сразу вот так: ```appRouter.navigateTo(const MoreMainRoute());```
+    //! но тогда наш TabNavigator не будет знать текущий индекс, аналогично и по ниже указанным методам
   }
 
   @override
