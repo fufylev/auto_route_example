@@ -21,7 +21,7 @@ class BottomNavBarRouter {
   ];
 }
 
-const _routes = [
+final List<PageRouteInfo> _routes = [
   HomeRoute(),
   MoreRoute(),
 ];
@@ -71,13 +71,17 @@ class TabNavigator {
       final targetRoute = _getRoute(_currentIndex);
       final currentPath = router.currentPath;
 
-      final moreMainPath = '${BottomNavBarRouter.path}/${MoreRouter.moreRoutePath}/${MoreRouter.moreMainRoutePath}';
-      final homeMainPath = '${BottomNavBarRouter.path}/${HomeRouter.homeRoutePath}/${HomeRouter.homeMainRoutePath}';
+      final moreMainPath =
+          '${BottomNavBarRouter.path}/${MoreRouter.moreRoutePath}/${MoreRouter.moreMainRoutePath}';
+      final homeMainPath =
+          '${BottomNavBarRouter.path}/${HomeRouter.homeRoutePath}/${HomeRouter.homeMainRoutePath}';
 
       // Исключаем повторный процесс [router.replaceAll] если на данный момент уже открыт главный экран текущего таба
       // это исключает ненужное перестроение и моргание экрана
-      if (currentPath != homeMainPath && newIndex == BottomNavigationIndex.home ||
-          currentPath != moreMainPath && newIndex == BottomNavigationIndex.more) {
+      if (currentPath != homeMainPath &&
+              newIndex == BottomNavigationIndex.home ||
+          currentPath != moreMainPath &&
+              newIndex == BottomNavigationIndex.more) {
         // если _currentIndex == _prevIndex значит мы повторно тапаем по одному и тому же табу
         // для таба с [newIndex] производим замену всего стека на "главный для конкретного таба" экран
         router.replaceAll([targetRoute]);
